@@ -12,7 +12,6 @@
         <script>
             function updateSection() {
                 window.lpTag=window.lpTag||{};
-                console.log(document.getElementById("sections").value);
                 lpTag.newPage(document.location.href,{
                     section: document.getElementById("sections").value.split(",")
                 });
