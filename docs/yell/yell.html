@@ -93,11 +93,11 @@
               }
             }
             function getBearerToken(button, callback) {
-                button.textContent = 'Getting bearer token...';
+                button.lastChild.textContent = 'Getting bearer token…';
                 return getLogin((login) => { console.log(login); return callback(login); });
             }
             function openWebsocket(button, login, callback) {
-                button.textContent = 'Opening websocket...';
+                button.lastChild.textContent = 'Opening websocket…';
                 const clientProperties = 'appId=Y4B&'
                   + 'deviceFamily=MOBILE&'
                   + 'os=LINUX&'
@@ -120,7 +120,7 @@
                 ));
             }
             function setAgentStatus(button, websocket, agentId, callback) {
-                button.textContent = 'Setting agent status...';
+                button.lastChild.textContent = 'Setting agent status…';
                 const setAgentStateReq = {
                     id: '1',
                     type: '.ams.routing.SetAgentState',
@@ -136,7 +136,7 @@
                 return callback(websocket.send(JSON.stringify(setAgentStateReq)));
             }
             function validateResponse(button, spinner, data) {
-                button.textContent = 'Validating response...';
+                button.lastChild.textContent = 'Validating response…';
                 console.log(data);
                 onSetAgentOnlineFinished(button, spinner, data.code < 400);
             }
@@ -163,14 +163,14 @@
                 button.classList.remove('btn-info');
                 spinner.classList.add("d-none");
                 if (successful) {
-                    button.textContent = 'Agent status update success';
+                    button.lastChild.textContent = 'Agent status update success';
                     button.classList.add('btn-success');
                 } else {
-                    button.textContent = 'Agent status update failed';
+                    button.lastChild.textContent = 'Agent status update failed';
                     button.classList.add('btn-warning');
                 }
                 setTimeout(_ => {
-                    button.textContent = 'Update agent status to online';
+                    button.lastChild.textContent = 'Update agent status to online';
                     button.classList.remove('btn-success');
                     button.classList.remove('btn-warning');
                     button.classList.add('btn-primary');
@@ -216,7 +216,7 @@
             </div>
             <div class="input-group mb-3">
                 <button id="setAgentOnlineButton" class="btn btn-primary" onclick="setAgentOnline()">
-                    <span id="setAgentOnlineSpinner" class="spinner-border spinner-border-sm d-none" role="status" aria-hidden="true"></span>
+                    <span id="setAgentOnlineSpinner" class="spinner-border spinner-border-sm mr-2 d-none" role="status" aria-hidden="true"></span>
                     Update agent status to online
                 </button>
             </div>
